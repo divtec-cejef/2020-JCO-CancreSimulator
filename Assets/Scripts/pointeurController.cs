@@ -32,7 +32,7 @@ public class pointeurController : MonoBehaviour
         playerColl = this.GetComponentInChildren<PlayerCollider>();
 
         //scorePlayer.name = "scorePlayer" + playerId;
-        //scorePlayer.GetComponent<TextMesh>().text = playerScore.ToString() + "/10";
+        //scorePlayer.text = playerScore.ToString() + "/10";
 
         /*if (playerId != 0)
         {
