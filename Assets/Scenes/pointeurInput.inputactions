@@ -1,0 +1,63 @@
+{
+    "name": "pointeurInput",
+    "maps": [
+        {
+            "name": "pointeur",
+            "id": "be0b0279-5313-41ae-84eb-976694182c38",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "5d388245-20f2-480d-90c8-238256caf8e9",
+                    "expectedControlType": "Stick",
+                    "processors": "StickDeadzone(min=0.2,max=1.6)",
+                    "interactions": ""
+                },
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "5078a9f0-4ebd-4f9e-9ab2-46d4ae50ef3b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "746c4d41-8575-445c-ab08-033c38c7aaa7",
+                    "path": "<Gamepad>/rightStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ce2e3a05-8b23-4eca-929d-08d4a1185d1a",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39ece6e5-95f9-4704-b417-fbb0c009a25e",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

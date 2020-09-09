@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 94d8e2aa0139f5f4f9b52802ffd8fc73
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - target: {fileID: 3871169331348692447, guid: d512d0298f13ee04ca05a4a7d932618d, type: 3}
+  - doorTeacher: {fileID: 2242176560108068254, guid: 974fa8cb8f044174fa935938f54d7209, type: 3}
+  - VictoryIMG: {instanceID: 0}
+  - scoreText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
