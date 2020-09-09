@@ -129,7 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.4
-  moveSpeed: 20
+  moveSpeed: 30
+  scorePlayer: {fileID: 1611224525278650332, guid: 3739f88f4c6bc4f4592f3ad12fe83710, type: 3}
 --- !u!114 &3355990933646217791
 MonoBehaviour:
   m_ObjectHideFlags: 0

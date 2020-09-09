@@ -18,10 +18,11 @@ public class GameManager : MonoBehaviour
     //Objet : professor
     public Professor professor;
     //Texte qui contient le score
-    public Text scoreText;
+    //public Text scoreText;
+    //public TextMesh scoreText;
     //condition de victoire
     bool win = false;
-    int score = 0;
+    //int score = 0;
     int compteur = 10;
     int style = 50;
     bool tenSec = false;
@@ -58,14 +59,7 @@ public class GameManager : MonoBehaviour
         {   
             // Stop l'apparition des cibles
             CancelInvoke("Spawn");
-        }
-
-        // 0 = clic gauche
-        // joue un son à chaque clic de souris
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    GetComponent<AudioSource>().Play();
-       // }        
+        }    
     }
 
     /**
@@ -84,28 +78,31 @@ public class GameManager : MonoBehaviour
     /**
      * Incrémente le score
      */
-    public void IncrementScore()
+    /*public void IncrementScore()
     {
         score++;
         print(score);
 
-        scoreText.text = score.ToString();
+        //scoreText.text = score.ToString();
 
         if(score >= 10)
         {
-            win = true;
 
-            VictoryIMG.SetActive(true);
         }
+    }*/
+    public void PlayerWin() 
+    { 
+            win = true;
+            VictoryIMG.SetActive(true);
     }
 
     /**
      * Décrémente le score
      */
-    public void DecrementScore()
+    /*public void DecrementScore()
     {
         score--;
-    }
+    }*/
 
     /**
      * incrémente le compteur jusqu'à 10, puis recommence.
@@ -114,11 +111,11 @@ public class GameManager : MonoBehaviour
     public void tenSecondsTimer()
     {
         //compare le score du joueur avec le score enregistrer lors du dernier repeat
-        if (oldScore != score)
+        /*if (oldScore != score)
         {
             compteur = 0;
             tenSec = false;
-        }
+        }*/
 
         //Regarde si le compteur atteint 10
         if (compteur <= 10)
