@@ -8,8 +8,6 @@ public class pointeurController : MonoBehaviour
     public float radius = 0.25f;
     // Vitesse de déplacement du curseur
     public float moveSpeed = 20f;
-    // Score du joueur affiché à l'écran
-    public Text scorePlayer;
     
     // Score du joueur
     private int playerScore = 0;
@@ -19,6 +17,10 @@ public class pointeurController : MonoBehaviour
 
     GameManager gameManager;
     PlayerCollider playerColl;
+    ScoreColor sc;
+    Text displayedScore;
+
+    string playerScoreName;
 
     Vector2 i_movement;
 
@@ -27,20 +29,16 @@ public class pointeurController : MonoBehaviour
         playerId = ChangeColor.getPlayerId();
         print("player" + playerId + " has joined!");
 
+        playerScoreName = "scorePlayer" + playerId.ToString();
+
+
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         
+        displayedScore = GameObject.Find(playerScoreName).GetComponent<Text>();
+        sc = displayedScore.GetComponentInChildren<ScoreColor>();
+        sc.createScore();
+        
         playerColl = this.GetComponentInChildren<PlayerCollider>();
-
-        //scorePlayer.name = "scorePlayer" + playerId;
-        //scorePlayer.text = playerScore.ToString() + "/10";
-
-        /*if (playerId != 0)
-        {
-            Instantiate(scorePlayer, new Vector2(-3.6f, 4f - (playerId - 0.5f)), Quaternion.identity);
-        } else
-        {
-            Instantiate(scorePlayer, new Vector2(-3.6f, 4f), Quaternion.identity);
-        }*/
     }
 
     void Update()
@@ -77,7 +75,7 @@ public class pointeurController : MonoBehaviour
         playerScore++;
         print(playerScore);
 
-        scorePlayer.text = playerScore.ToString(); // + "/10" //.GetComponent<TextMesh>()
+        displayedScore.text = playerScore.ToString() + " / 20"; // + "/10" //.GetComponent<TextMesh>()
 
         if (playerScore >= 10)
         {

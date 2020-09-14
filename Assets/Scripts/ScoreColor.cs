@@ -13,7 +13,13 @@ public class ScoreColor : MonoBehaviour
     void Start()
     {
 
+        
+    }
+
+    public void createScore()
+    {
         GetComponent<Text>().color = availableColors[lastColorIndex];
+        GetComponent<Text>().text = "0 / 20";
         lastColorIndex++;
         if (lastColorIndex >= 4)
         {
