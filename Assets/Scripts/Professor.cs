@@ -9,6 +9,9 @@ public class Professor : MonoBehaviour
     public Sprite[] spriteArray;
     //sprite point d'exclamation
     public GameObject exclamation;
+    public GameObject exclamationRed;
+
+    private bool isReturned = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +22,7 @@ public class Professor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     /**
@@ -31,6 +34,7 @@ public class Professor : MonoBehaviour
     {
         spriteRenderer.sprite = spriteArray[1];
         exclamation.SetActive(false);
+        isReturned = true;
     }
 
     /**
@@ -40,6 +44,7 @@ public class Professor : MonoBehaviour
     public void moveOUT()
     {
         spriteRenderer.sprite = spriteArray[0];
+        isReturned = false;
     }
 
     /**
@@ -47,9 +52,39 @@ public class Professor : MonoBehaviour
      */
     public void moveIN()
     {
-        exclamation.SetActive(true);
+        activeExcla();
+        Invoke("desacExcla", 0.25f);
+        Invoke("activeExclaRed", 0.25f);
+        Invoke("desacExclaRed", 0.50f);
+        Invoke("activeExcla", 0.50f);
+        Invoke("desacExcla", 0.75f);
+        Invoke("activeExclaRed", 0.75f);
+
+        Invoke("desacExclaRed", 1f);
         Invoke("gettingAngry", 1f);
 
+    }
+
+    public bool isTeacherIN()
+    {
+        return isReturned;
+    }
+
+    public void activeExcla()
+    {
+        exclamation.SetActive(true);
+    }
+    public void desacExcla()
+    {
+        exclamation.SetActive(false);
+    }
+    public void activeExclaRed()
+    {
+        exclamationRed.SetActive(true);
+    }
+    public void desacExclaRed()
+    {
+        exclamationRed.SetActive(false);
     }
 
 

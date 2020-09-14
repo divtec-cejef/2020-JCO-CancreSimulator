@@ -7,8 +7,10 @@ public class pointeurController : MonoBehaviour
     // Radius de recherche
     public float radius = 0.25f;
     // Vitesse de déplacement du curseur
-    public float moveSpeed = 20f;
-    
+    public float moveSpeed = 30f;
+    //Index du dernier joueur à avoir rejoint
+    public static int lastColorIndex = 0;
+
     // Score du joueur
     private int playerScore = 0;
 
@@ -26,19 +28,18 @@ public class pointeurController : MonoBehaviour
 
     void Start()
     {
-        playerId = ChangeColor.getPlayerId();
+        playerId = lastColorIndex;
         print("player" + playerId + " has joined!");
 
         playerScoreName = "scorePlayer" + playerId.ToString();
-
-
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        
         displayedScore = GameObject.Find(playerScoreName).GetComponent<Text>();
         sc = displayedScore.GetComponentInChildren<ScoreColor>();
         sc.createScore();
         
         playerColl = this.GetComponentInChildren<PlayerCollider>();
+
+        gameManager.timerIsRunning = true;
     }
 
     void Update()
@@ -64,24 +65,30 @@ public class pointeurController : MonoBehaviour
         // Si une cible a été trouvé, elle est détruite et le score du joueur augmente.
         if (go != null)
         {
-            IncrementScore();
+            IncrementScore(go.GetComponent<Target>());
             Destroy(go);
         }
 
     }
 
-    public void IncrementScore()
+    public void IncrementScore(Target cible)
     {
-        playerScore++;
+        if (cible.isGoldenTarget)
+        {
+            playerScore += 5000;
+        } else
+        {
+            playerScore += 1000 - (int)(cible.targetSize * 10000f); //(10 - cible.targetSize * 100);
+        }
+
         print(playerScore);
 
-        displayedScore.text = playerScore.ToString() + " / 20"; // + "/10" //.GetComponent<TextMesh>()
+        displayedScore.text = playerScore.ToString(); // + "/10" //.GetComponent<TextMesh>()
 
-        if (playerScore >= 10)
+        /*if (playerScore >= 10)
         {
             print("player" + playerId + " winned!");
-            gameManager.PlayerWin();
-        }
+            gameManager.PlayerWin(playerId);
+        }*/
     }
-
 }

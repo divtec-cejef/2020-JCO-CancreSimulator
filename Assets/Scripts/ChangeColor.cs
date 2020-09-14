@@ -6,8 +6,6 @@ public class ChangeColor : MonoBehaviour
 {
     private static Renderer rend;
 
-    private static int lastColorIndex = 0;
-
     private static List<Color> availableColors = new List<Color> { Color.red, Color.cyan, Color.green, Color.yellow  };
 
     // Start is called before the first frame update
@@ -15,21 +13,8 @@ public class ChangeColor : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
 
-        rend.material.color = availableColors[lastColorIndex];
-        lastColorIndex++;
-        if (lastColorIndex >= 4)
-        {
-            lastColorIndex = 0;
-        }
+        rend.material.color = availableColors[pointeurController.lastColorIndex];
+        pointeurController.lastColorIndex++;
+      
     }
-
-    /// <summary>
-    /// Donne un id au joueur
-    /// </summary>
-    /// <returns>L'id du joueur</returns>
-    public static int getPlayerId()
-    {
-        return lastColorIndex;
-    }
-
 }

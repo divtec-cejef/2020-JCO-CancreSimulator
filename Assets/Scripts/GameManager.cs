@@ -17,23 +17,33 @@ public class GameManager : MonoBehaviour
     public WindowTeacher windowTeacher;
     //Objet : professor
     public Professor professor;
-    //Texte qui contient le score
-    //public Text scoreText;
-    //public TextMesh scoreText;
+    //Objet : Bouton Rejouer
+    public GameObject Rejouer;
+    //Objet : Nom gagnant
+    public GameObject Winner;
     //condition de victoire
     bool win = false;
-    //int score = 0;
+    //Texte du compteur
+    public Text timeText;
+
+
     int compteur = 10;
     int style = 50;
     bool tenSec = false;
-    int oldScore = 0;
     int anger = 0;
+    //Temps de départ du compteur
+    public float timeRemaining;
+    //Etat du compteur
+    public bool timerIsRunning = false;
 
 
 
     // S'éxucute au lancement du script
     void Start() 
     {
+        VictoryIMG.SetActive(false);
+        Rejouer.SetActive(false);
+        timeRemaining = 10;
         //boucle des movement des professeurs
         //StartCoroutine(movingTeachers());
 
@@ -54,8 +64,25 @@ public class GameManager : MonoBehaviour
     // S'éxécute toutes les frames
     void Update()
     {
+        if (timerIsRunning)
+        {
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+            }
+            else
+            {
+                Debug.Log("Time has run out!");
+                timeRemaining = 0;
+                timerIsRunning = false;
+                CancelInvoke("Spawn");
+            }
+        }
+
+        DisplayTime(timeRemaining);
+
         //condition de victoire
-        if(win == true)
+        if (win)
         {   
             // Stop l'apparition des cibles
             CancelInvoke("Spawn");
@@ -90,10 +117,15 @@ public class GameManager : MonoBehaviour
 
         }
     }*/
-    public void PlayerWin() 
+    public void PlayerWin(int playerId) 
     { 
-            win = true;
-            VictoryIMG.SetActive(true);
+        win = true;
+        VictoryIMG.SetActive(true);
+        Rejouer.SetActive(true);
+
+        playerId++;
+        string player = playerId.ToString();
+        Winner.GetComponent<Text>().text = "Le joueur " + player + " a gagné !";
     }
 
     /**
@@ -372,6 +404,14 @@ public class GameManager : MonoBehaviour
                 Console.WriteLine("Default case");
                 break;
         }
+    }
+
+    void DisplayTime(float timeToDisplay)
+    {
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+
+        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
 }

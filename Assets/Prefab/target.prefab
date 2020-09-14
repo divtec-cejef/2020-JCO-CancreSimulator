@@ -113,3 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  spriteRenderer: {fileID: 2708069365259722229}
+  spriteArray:
+  - {fileID: 21300000, guid: aa240150ca7d423498603986ac9877f3, type: 3}
+  - {fileID: 21300000, guid: 8def2eeb837e65045a8175c734ea96de, type: 3}
