@@ -128,9 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2d314ff20db5a47add9adbc3726e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0.4
+  radius: 0.32
   moveSpeed: 30
-  scorePlayer: {fileID: 1611224525278650332, guid: 3739f88f4c6bc4f4592f3ad12fe83710, type: 3}
 --- !u!114 &3355990933646217791
 MonoBehaviour:
   m_ObjectHideFlags: 0

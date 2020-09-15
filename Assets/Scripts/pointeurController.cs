@@ -78,7 +78,7 @@ public class pointeurController : MonoBehaviour
             playerScore += 5000;
         } else
         {
-            playerScore += 1000 - (int)(cible.targetSize * 10000f); //(10 - cible.targetSize * 100);
+            playerScore += 1000 - (int)(cible.targetSize * 10000f) + 100; //(10 - cible.targetSize * 100);
         }
 
         print(playerScore);

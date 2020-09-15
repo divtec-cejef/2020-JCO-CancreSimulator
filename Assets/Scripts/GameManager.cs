@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     bool tenSec = false;
     int anger = 0;
     //Temps de départ du compteur
-    public float timeRemaining;
+    public float timeRemaining = 120;
     //Etat du compteur
     public bool timerIsRunning = false;
 
@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
     {
         VictoryIMG.SetActive(false);
         Rejouer.SetActive(false);
-        timeRemaining = 10;
         //boucle des movement des professeurs
         //StartCoroutine(movingTeachers());
 
@@ -76,17 +75,18 @@ public class GameManager : MonoBehaviour
                 timeRemaining = 0;
                 timerIsRunning = false;
                 CancelInvoke("Spawn");
+                PlayerWin();
             }
         }
 
         DisplayTime(timeRemaining);
 
         //condition de victoire
-        if (win)
+        /*if (win)
         {   
             // Stop l'apparition des cibles
             CancelInvoke("Spawn");
-        }    
+        }*/
     }
 
     /**
@@ -117,15 +117,11 @@ public class GameManager : MonoBehaviour
 
         }
     }*/
-    public void PlayerWin(int playerId) 
+    public void PlayerWin() 
     { 
-        win = true;
+        //win = true;
         VictoryIMG.SetActive(true);
-        Rejouer.SetActive(true);
-
-        playerId++;
-        string player = playerId.ToString();
-        Winner.GetComponent<Text>().text = "Le joueur " + player + " a gagné !";
+        //Rejouer.SetActive(true);
     }
 
     /**

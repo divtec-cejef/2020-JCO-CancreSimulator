@@ -591,7 +591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &657845269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,7 +1077,7 @@ MonoBehaviour:
   Rejouer: {fileID: 808110400}
   Winner: {fileID: 2096764260}
   timeText: {fileID: 504587748}
-  timeRemaining: 120
+  timeRemaining: 10.6
   timerIsRunning: 0
 --- !u!4 &1270019351
 Transform:
