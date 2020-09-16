@@ -21,7 +21,7 @@ public class DoorTeacher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveOUT();
+        MoveOUT();
     }
 
     // Update is called once per frame
@@ -42,7 +42,7 @@ public class DoorTeacher : MonoBehaviour
     /**
      *  Fait bouger le prof dans la salle
      */
-    public void moveIN()
+    public void MoveIN()
     {
         targetProgress = transform.position - new Vector3(3.5f, 0, 0);
         print(targetProgress);
@@ -51,7 +51,7 @@ public class DoorTeacher : MonoBehaviour
     /**
      * Fait bouger le prof hors de la salle
      */
-    public void moveOUT()
+    public void MoveOUT()
     {
         targetProgress = transform.position + new Vector3(3.5f, 0, 0);
         print(targetProgress);
@@ -60,7 +60,7 @@ public class DoorTeacher : MonoBehaviour
     /**
      * Tant que le prof n'est pas à sa position d'arrivée, il n'est pas considéré comme "dans la classe"
      */
-    public bool isTeacherIN() 
+    public bool IsTeacherIN() 
     {
         return (transform.position == target);
     }

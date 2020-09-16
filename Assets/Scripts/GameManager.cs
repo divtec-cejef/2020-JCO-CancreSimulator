@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,7 +36,7 @@ public class GameManager : MonoBehaviour
     public float timeRemaining = 120;
     //Etat du compteur
     public bool timerIsRunning = false;
-
+    // Tableau des scores
     public int[] tableauScore = new int[4];
 
     // S'éxucute au lancement du script
@@ -75,9 +73,9 @@ public class GameManager : MonoBehaviour
         DisplayTime(timeRemaining);
     }
 
-    /**
-     * Fait apparaître une cible à un point donné aléatoire
-     */
+    /// <summary>
+    /// Fait apparaître une cible à un point donné aléatoire.
+    /// </summary>
     void Spawn()
     {
         float randomX = UnityEngine.Random.Range(-4.31f, 4.73f);
@@ -88,6 +86,9 @@ public class GameManager : MonoBehaviour
         Instantiate(target, randomPosition, Quaternion.identity);
     }
 
+    /// <summary>
+    /// Ecran de fin de jeu.
+    /// </summary>
     public void PlayerWin() 
     { 
         win = true;
@@ -103,7 +104,7 @@ public class GameManager : MonoBehaviour
         }
 
         //Detruit tout les professeurs présents
-        CancelInvoke("movingTeachers");
+        CancelInvoke("MovingTeachers");
         Destroy(doorTeacher);
         Destroy(windowTeacher);
         Destroy(professor);
@@ -114,12 +115,15 @@ public class GameManager : MonoBehaviour
         Rejouer.SetActive(true);
     }
 
-    public void coroutine()
+    /// <summary>
+    /// Boucle de mouvement des professeurs.
+    /// </summary>
+    public void Coroutine()
     {
         //boucle des movement des professeurs
-        StartCoroutine(movingTeachers());
+        StartCoroutine(MovingTeachers());
     }
-    IEnumerator movingTeachers()
+    IEnumerator MovingTeachers()
     {
 
         int rndNum = UnityEngine.Random.Range(1, 6);
@@ -131,34 +135,34 @@ public class GameManager : MonoBehaviour
                 //0
                 yield return new WaitForSeconds(2.5f);
                 //5
-                professor.moveIN();
+                professor.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //10
-                professor.moveOUT();
+                professor.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //15
                 yield return new WaitForSeconds(2.5f);
                 //20
-                windowTeacher.moveIN();
+                windowTeacher.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //25
-                windowTeacher.moveOUT();
+                windowTeacher.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //30
                 yield return new WaitForSeconds(2.5f);
                 //35
-                professor.moveIN();
+                professor.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //40
-                professor.moveOUT();
+                professor.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //45
                 yield return new WaitForSeconds(2.5f);
                 //50
-                doorTeacher.moveIN();
+                doorTeacher.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //55
-                doorTeacher.moveOUT();
+                doorTeacher.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //60
                 break;
@@ -171,38 +175,38 @@ public class GameManager : MonoBehaviour
                 
                 yield return new WaitForSeconds(2.5f);
                 //10
-                windowTeacher.moveIN();
-                doorTeacher.moveIN();
+                windowTeacher.MoveIN();
+                doorTeacher.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //15
-                windowTeacher.moveOUT();
-                doorTeacher.moveOUT();
+                windowTeacher.MoveOUT();
+                doorTeacher.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //20
                 yield return new WaitForSeconds(2.5f);
                 //25
-                professor.moveIN();
+                professor.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //30
-                professor.moveOUT();
+                professor.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //35
-                doorTeacher.moveIN();
+                doorTeacher.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //40
-                doorTeacher.moveOUT();
+                doorTeacher.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //45
-                doorTeacher.moveIN();
+                doorTeacher.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //50
-                doorTeacher.moveOUT();
+                doorTeacher.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //55
-                professor.moveIN();
+                professor.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //60
-                professor.moveOUT();
+                professor.MoveOUT();
                 break;
 
             case 3:
@@ -210,40 +214,40 @@ public class GameManager : MonoBehaviour
                 
                 yield return new WaitForSeconds(2.5f);
                 //5
-                professor.moveIN();
-                windowTeacher.moveIN();
+                professor.MoveIN();
+                windowTeacher.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //10
-                windowTeacher.moveOUT();
-                professor.moveOUT();
+                windowTeacher.MoveOUT();
+                professor.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //15
-                professor.moveIN();
+                professor.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //20
-                professor.moveOUT();
+                professor.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //25
-                professor.moveIN();
+                professor.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //30
-                professor.moveOUT();
+                professor.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //35
                 yield return new WaitForSeconds(2.5f);
                 //40
-                doorTeacher.moveIN();
+                doorTeacher.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //45
-                doorTeacher.moveOUT();
+                doorTeacher.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //50
                 yield return new WaitForSeconds(2.5f);
                 //55
-                windowTeacher.moveIN();
+                windowTeacher.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //60
-                windowTeacher.moveOUT();
+                windowTeacher.MoveOUT();
 
                 break;
 
@@ -253,34 +257,34 @@ public class GameManager : MonoBehaviour
                 //5
                 yield return new WaitForSeconds(2.5f);
                 //10
-                professor.moveIN();
+                professor.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //15
-                professor.moveOUT();
+                professor.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //20
-                doorTeacher.moveIN();
+                doorTeacher.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //25
-                doorTeacher.moveOUT();
+                doorTeacher.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //30
                 yield return new WaitForSeconds(2.5f);
                 //35
                 yield return new WaitForSeconds(2.5f);
                 //40
-                professor.moveIN();
+                professor.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //45
-                professor.moveOUT();
+                professor.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //50
                 yield return new WaitForSeconds(2.5f);
                 //55
-                windowTeacher.moveIN();
+                windowTeacher.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //60
-                windowTeacher.moveOUT();
+                windowTeacher.MoveOUT();
 
                 break;
 
@@ -289,38 +293,38 @@ public class GameManager : MonoBehaviour
                 
                 yield return new WaitForSeconds(2.5f);
                 //5
-                doorTeacher.moveIN();
+                doorTeacher.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //10
-                doorTeacher.moveOUT();
+                doorTeacher.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //15
                 yield return new WaitForSeconds(2.5f);
                 //20
-                doorTeacher.moveIN();
-                windowTeacher.moveIN();
+                doorTeacher.MoveIN();
+                windowTeacher.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //25
-                doorTeacher.moveOUT();
-                windowTeacher.moveOUT();
+                doorTeacher.MoveOUT();
+                windowTeacher.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //30
                 yield return new WaitForSeconds(2.5f);
                 //35
-                professor.moveIN();
+                professor.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //40
-                professor.moveOUT();
+                professor.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //45
                 yield return new WaitForSeconds(2.5f);
                 //50
                 yield return new WaitForSeconds(2.5f);
                 //55
-                windowTeacher.moveIN();
+                windowTeacher.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //60
-                windowTeacher.moveOUT();
+                windowTeacher.MoveOUT();
 
                 break;
 
@@ -330,6 +334,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Affiche la timer dans le jeu
+    /// </summary>
+    /// <param name="timeToDisplay">Temps de jeu</param>
     void DisplayTime(float timeToDisplay)
     {
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
@@ -338,6 +346,9 @@ public class GameManager : MonoBehaviour
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    /// <summary>
+    /// Affiche le(s) gagnant(s)
+    /// </summary>
     void DisplayWinner()
     {
         int meilleurScore = tableauScore[0];

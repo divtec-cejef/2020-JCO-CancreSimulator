@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using UnityEngine;
+﻿using UnityEngine;
 
-/**
- * Cible qui appaître sur le tableau de la salle de classe
- */
+/// <summary>
+/// Cible qui appaît sur le tableau de la salle de classe.
+/// </summary>
 public class Target : MonoBehaviour
 {
     // Référence du GameManager
@@ -21,13 +17,13 @@ public class Target : MonoBehaviour
     Vector3 UVerti;
     //down
     Vector3 DVerti;
-
-    int goldenTarget = 10;
+    // Cibles d'or
+    const int GOLDEN_TARGET = 10;
     int goldenTargetRoll;
+    public bool isGoldenTarget = false;
     //Taille de la cible
     public float targetSize;
-    public bool isGoldenTarget = false;
-
+    // Vitesse de déplacement des cibles
     float speed;
 
     Vector3 tempPosition;
@@ -38,21 +34,23 @@ public class Target : MonoBehaviour
     // S'éxécute au lancement du script
     void Start()
     {
-        //donne accès aux fonctions présentent dans le script "GameManager"
+        //donne accès aux fonctions présentent dans le GameManager
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         //La cible aura une vitesse constante aléatoire
-        speed = UnityEngine.Random.Range(0f, 1.5f);
-        //Choisit si le mouvement sera vertical ou horizontal
-        verticalORhorizontal = UnityEngine.Random.Range(0, 2);
+        speed = Random.Range(0f, 1.5f);
+        //Choisi si le mouvement sera vertical ou horizontal
+        verticalORhorizontal = Random.Range(0, 2);
         print("vertical OR horizontal : " + verticalORhorizontal);
 
-        goldenTargetRoll = UnityEngine.Random.Range(0, 50);
-        if (goldenTargetRoll == goldenTarget)
+        // Tirage de la cible d'or
+        goldenTargetRoll = Random.Range(0, 50);
+        if (goldenTargetRoll == GOLDEN_TARGET)
         {
             spriteRenderer.sprite = spriteArray[1];
             isGoldenTarget = true;
         }
 
+        // Définition de la taille de la cible
         transform.localScale = RndScale();
 
         if (verticalORhorizontal == 1)
@@ -86,9 +84,9 @@ public class Target : MonoBehaviour
             }
 
         }
-
-        Invoke("Destroy", 6f);
+        Destroy(gameObject, 6f);
     }
+    
     // S'éxécute toutes les frames
     void Update()
     {
@@ -107,9 +105,9 @@ public class Target : MonoBehaviour
 
     }
 
-    /**
-     * Fait bouger la cible verticalement
-     */
+    /// <summary>
+    /// Fait bouger la cible verticalement.
+    /// </summary>
     public void Vertical()
     {
         if (transform.position.y > tempPosition.y)
@@ -124,9 +122,9 @@ public class Target : MonoBehaviour
 
     }
 
-    /**
-     * Fait bouger la cible horizontalement
-     */
+    /// <summary>
+    /// Fait bouger la cible horizontalement
+    /// </summary>
     public void Horizontal()
     {
 
@@ -142,10 +140,10 @@ public class Target : MonoBehaviour
 
     }
 
-    /**
-     * Fait changer de drection le mouvement de la cible
-     * Si elle atteint sa position min/max, et se dirigera vers sa position max/min
-     */
+    /// <summary>
+    /// Fait changer de drection le mouvement de la cible.
+    /// Si elle atteint sa position min/max, et se dirigera vers sa position max/min.
+    /// </summary>
     public void SwitchTempPosition()
     {
         if (verticalORhorizontal == 1)
@@ -174,16 +172,16 @@ public class Target : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Donne une taille aléatoire à la cible
+    /// </summary>
+    /// <returns></returns>
     public Vector3 RndScale()
     {
-        float newScale = UnityEngine.Random.Range(0.01f, 0.08f);
+        float newScale = Random.Range(0.01f, 0.08f);
         Vector3 Scale = new Vector3(newScale, newScale, newScale);
         targetSize = newScale;
         return Scale;
     }
 
-    public void Destroy()
-    {
-        Destroy(gameObject);
-    }
 }

@@ -1,22 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreColor : MonoBehaviour
 {
+    // Liste des couleurs qui seront utilisées
     private static List<Color> availableColors = new List<Color> { Color.red, Color.cyan, Color.green, Color.yellow };
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Donne une couleur et initialise une zone de score.
+    /// </summary>
+    public void CreateScore()
     {
-
-        
-    }
-
-    public void createScore()
-    {
+        // Donne la couleur
         GetComponent<Text>().color = availableColors[pointeurController.lastColorIndex];
+        // Initialise à zéro le score
         GetComponent<Text>().text = (pointeurController.lastColorIndex + 1) + " : 0";
         
     }

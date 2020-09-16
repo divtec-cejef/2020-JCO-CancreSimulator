@@ -1012,7 +1012,7 @@ MonoBehaviour:
   Winner: {fileID: 836598654}
   win: 0
   timeText: {fileID: 504587748}
-  timeRemaining: 1
+  timeRemaining: 10
   timerIsRunning: 0
   tableauScore: 00000000000000000000000000000000
 --- !u!4 &1270019351

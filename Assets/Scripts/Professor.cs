@@ -16,7 +16,7 @@ public class Professor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveOUT();
+        MoveOUT();
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class Professor : MonoBehaviour
      * lorsqu'il est retourné, il est déclaré "dans la salle"
      * désactive le point d'exclamation
      */
-    void gettingAngry()
+    void GettingAngry()
     {
         spriteRenderer.sprite = spriteArray[1];
         exclamation.SetActive(false);
@@ -41,7 +41,7 @@ public class Professor : MonoBehaviour
     * Fait se retourner le prof face au tableau
     * lorsqu'il est retourné, il est déclaré "en dehors de la salle"
     */
-    public void moveOUT()
+    public void MoveOUT()
     {
         spriteRenderer.sprite = spriteArray[0];
         isReturned = false;
@@ -50,39 +50,39 @@ public class Professor : MonoBehaviour
     /**
      * Le prof s'énèrve un point d'exclamation appraît au dessus de sa tête
      */
-    public void moveIN()
+    public void MoveIN()
     {
-        activeExcla();
-        Invoke("desacExcla", 0.25f);
-        Invoke("activeExclaRed", 0.25f);
-        Invoke("desacExclaRed", 0.50f);
-        Invoke("activeExcla", 0.50f);
-        Invoke("desacExcla", 0.75f);
-        Invoke("activeExclaRed", 0.75f);
+        ActiveExcla();
+        Invoke("DesacExcla", 0.25f);
+        Invoke("ActiveExclaRed", 0.25f);
+        Invoke("DesacExclaRed", 0.50f);
+        Invoke("ActiveExcla", 0.50f);
+        Invoke("DesacExcla", 0.75f);
+        Invoke("ActiveExclaRed", 0.75f);
 
-        Invoke("desacExclaRed", 1f);
-        Invoke("gettingAngry", 1f);
+        Invoke("DesacExclaRed", 1f);
+        Invoke("GettingAngry", 1f);
 
     }
 
-    public bool isTeacherIN()
+    public bool IsTeacherIN()
     {
         return isReturned;
     }
 
-    public void activeExcla()
+    public void ActiveExcla()
     {
         exclamation.SetActive(true);
     }
-    public void desacExcla()
+    public void DesacExcla()
     {
         exclamation.SetActive(false);
     }
-    public void activeExclaRed()
+    public void ActiveExclaRed()
     {
         exclamationRed.SetActive(true);
     }
-    public void desacExclaRed()
+    public void DesacExclaRed()
     {
         exclamationRed.SetActive(false);
     }
