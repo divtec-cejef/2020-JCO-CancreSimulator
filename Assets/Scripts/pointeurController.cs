@@ -112,17 +112,16 @@ public class pointeurController : MonoBehaviour
     {
         if(gameManager.win)
         {
-           
-            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
             gameManager.timerIsRunning = false;
             lastColorIndex = 0;
+
             // Détruit tous les joueurs avant de recommencer la partie
             GameObject[] pointers = GameObject.FindGameObjectsWithTag("pointer");
             foreach (var pointer in pointers)
             {
                 Destroy(pointer);
             }
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         }
 
     }
