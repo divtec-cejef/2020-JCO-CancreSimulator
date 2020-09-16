@@ -17,6 +17,13 @@ public class pointeurController : MonoBehaviour
     // Identifiant du joueur
     private int playerId;
 
+    //Objet : doorTeacher
+    public DoorTeacher doorTeacher;
+    //Objet : windowTeacher
+    public WindowTeacher windowTeacher;
+    //Objet : professor
+    public Professor professor;
+
     GameManager gameManager;
     PlayerCollider playerColl;
     ScoreColor sc;
@@ -36,10 +43,23 @@ public class pointeurController : MonoBehaviour
         displayedScore = GameObject.Find(playerScoreName).GetComponent<Text>();
         sc = displayedScore.GetComponentInChildren<ScoreColor>();
         sc.createScore();
-        
+        doorTeacher = GameObject.Find("teacher3").GetComponent<DoorTeacher>();
+        windowTeacher = GameObject.Find("teacher2").GetComponent<WindowTeacher>();
+        professor = GameObject.Find("Professor").GetComponent<Professor>();
+
         playerColl = this.GetComponentInChildren<PlayerCollider>();
 
         gameManager.timerIsRunning = true;
+
+        if(lastColorIndex == 0)
+        {
+            //boucle des movement des professeurs
+
+            //StartCoroutine(movingTeachers());
+            gameManager.InvokeRepeating("coroutine", 1f, 30f);
+            // Lancement de l'apparition des cibles dès le début, et se répète chaque seconde
+            gameManager.InvokeRepeating("Spawn", 1f, 1f);
+        }
     }
 
     void Update()
@@ -73,22 +93,24 @@ public class pointeurController : MonoBehaviour
 
     public void IncrementScore(Target cible)
     {
-        if (cible.isGoldenTarget)
+       int  multiplicateurScore = 1;
+        if (doorTeacher.isTeacherIN() || windowTeacher.isTeacherIN() || professor.isTeacherIN())
         {
-            playerScore += 5000;
+            multiplicateurScore = -1;
         } else
         {
-            playerScore += 1000 - (int)(cible.targetSize * 10000f) + 100; //(10 - cible.targetSize * 100);
+            multiplicateurScore = 1;
+        }
+        if (cible.isGoldenTarget)
+        {
+            playerScore += 5000 * multiplicateurScore;
+        } else
+        {
+            playerScore += (1000 - (int)(cible.targetSize * 10000f) + 100) * multiplicateurScore; //(10 - cible.targetSize * 100);
         }
 
         print(playerScore);
 
         displayedScore.text = playerScore.ToString(); // + "/10" //.GetComponent<TextMesh>()
-
-        /*if (playerScore >= 10)
-        {
-            print("player" + playerId + " winned!");
-            gameManager.PlayerWin(playerId);
-        }*/
     }
 }
