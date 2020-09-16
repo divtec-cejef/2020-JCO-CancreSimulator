@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class pointeurController : MonoBehaviour
 {
@@ -18,11 +20,11 @@ public class pointeurController : MonoBehaviour
     private int playerId;
 
     //Objet : doorTeacher
-    public DoorTeacher doorTeacher;
+    private DoorTeacher doorTeacher;
     //Objet : windowTeacher
-    public WindowTeacher windowTeacher;
+    private WindowTeacher windowTeacher;
     //Objet : professor
-    public Professor professor;
+    private Professor professor;
 
     GameManager gameManager;
     PlayerCollider playerColl;
@@ -91,6 +93,23 @@ public class pointeurController : MonoBehaviour
 
     }
 
+    public void OnRestart()
+    {
+        if(gameManager.win)
+        {
+            lastColorIndex = 0;
+            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            gameManager.timerIsRunning = false;
+            SceneManager.LoadScene("Game");
+        }
+
+    }
+
+    public void OnRecenter()
+    {
+        gameObject.transform.position = new Vector2(0, 0);
+    }
+
     public void IncrementScore(Target cible)
     {
        int  multiplicateurScore = 1;
@@ -111,6 +130,8 @@ public class pointeurController : MonoBehaviour
 
         print(playerScore);
 
-        displayedScore.text = playerScore.ToString(); // + "/10" //.GetComponent<TextMesh>()
+        gameManager.tableauScore[playerId] = playerScore;
+
+        displayedScore.text = (playerId + 1) + " : " + playerScore.ToString();
     }
 }

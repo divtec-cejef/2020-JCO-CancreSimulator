@@ -10,7 +10,7 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     // Référence du GameManager
-    public GameManager gameManager;
+    private GameManager gameManager;
     //Pièce à deux faces choisissant si le mouvement sera vertical ou horizontal
     int verticalORhorizontal;
     //left
@@ -87,7 +87,7 @@ public class Target : MonoBehaviour
 
         }
 
-        Invoke("FadeOut", 6f);
+        Invoke("Destroy", 6f);
     }
     // S'éxécute toutes les frames
     void Update()
@@ -182,31 +182,8 @@ public class Target : MonoBehaviour
         return Scale;
     }
 
-    public void FadeOut()
+    public void Destroy()
     {
-        float Alpha = 1f;
-
-        while (Alpha > 0f)
-        {
-            Alpha = Alpha - 0.005f;
-            spriteRenderer.color -= new Color(0, 0, 0, Alpha);
-            print(Alpha);
-        }
-
-        // Si un cible n'est pas détruite, la drétuit
         Destroy(gameObject);
     }
 }
-
-
-
-    /**
-     * Détruit une cible lorsque qu'elle est cliquée
-     */
-/*private void OnMouseDown()
-{
-
-    gameManager.IncrementScore();
-
-    Destroy(gameObject);
-}*/

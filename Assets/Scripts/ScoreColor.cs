@@ -17,7 +17,7 @@ public class ScoreColor : MonoBehaviour
     public void createScore()
     {
         GetComponent<Text>().color = availableColors[pointeurController.lastColorIndex];
-        GetComponent<Text>().text = "0";
+        GetComponent<Text>().text = (pointeurController.lastColorIndex + 1) + " : 0";
         
     }
 }

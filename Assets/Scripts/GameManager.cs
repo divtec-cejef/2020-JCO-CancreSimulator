@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,11 +13,11 @@ public class GameManager : MonoBehaviour
     //Objet : écran de victoire
     public GameObject VictoryIMG;
     //Objet : doorTeacher
-    public DoorTeacher doorTeacher;
+    private DoorTeacher doorTeacher;
     //Objet : windowTeacher
-    public WindowTeacher windowTeacher;
+    private WindowTeacher windowTeacher;
     //Objet : professor
-    public Professor professor;
+    private Professor professor;
     //Objet : backTeacher
     public GameObject backTeacher;
 
@@ -24,33 +25,28 @@ public class GameManager : MonoBehaviour
     public GameObject exclamation;
     //Objet : exclamationred
     public GameObject exclamationRed;
-    //Objet : Bouton Rejouer
+    //Objet : texte Rejouer
     public GameObject Rejouer;
     //Objet : Nom gagnant
     public GameObject Winner;
     //condition de victoire
-    bool win = false;
+    public bool win = false;
     //Texte du compteur
     public Text timeText;
 
-
-    int compteur = 10;
-    int style = 50;
-    bool tenSec = false;
-    int anger = 0;
     //Temps de départ du compteur
     public float timeRemaining = 120;
     //Etat du compteur
     public bool timerIsRunning = false;
 
-
+    public int[] tableauScore = new int[4];
 
     // S'éxucute au lancement du script
-    void Start() 
+    void Start()
     {
         VictoryIMG.SetActive(false);
-        Rejouer.SetActive(false);       
-        
+        Rejouer.SetActive(false);
+
         doorTeacher = GameObject.Find("teacher3").GetComponent<DoorTeacher>();
         windowTeacher = GameObject.Find("teacher2").GetComponent<WindowTeacher>();
         professor = GameObject.Find("Professor").GetComponent<Professor>();
@@ -64,7 +60,7 @@ public class GameManager : MonoBehaviour
         {
             if (timeRemaining > 0)
             {
-                timeRemaining -= Time.deltaTime;
+                timeRemaining -= Time.deltaTime;        
             }
             else
             {
@@ -94,8 +90,9 @@ public class GameManager : MonoBehaviour
 
     public void PlayerWin() 
     { 
-        //win = true;
+        win = true;
         VictoryIMG.SetActive(true);
+        DisplayWinner();
         //Annule l'apparition des cibles
         CancelInvoke("Spawn");
         //Détruit toutes les cibles restantes à la fin
@@ -115,28 +112,6 @@ public class GameManager : MonoBehaviour
         exclamationRed.SetActive(false);
        
         Rejouer.SetActive(true);
-    }
-    
-    /**
-     * Regarde si le joueur dispose encore de style, sinon l'expulse
-     */
-    public void checkStyle()
-    {
-        if(style <= 0)
-        {
-            //TODO : KICK JOUEUR
-        }
-    }
-
-    /**
-     * Regarde si le joueur maintient un bon niveau de colère, sinon l'expulse
-     */
-    public void checkAnger()
-    {
-        if (anger >= 100)
-        {
-            //TODO : KICK JOUEUR
-        }
     }
 
     public void coroutine()
@@ -361,6 +336,32 @@ public class GameManager : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    void DisplayWinner()
+    {
+        int meilleurScore = tableauScore[0];
+        int idMeilleurScore = 0;
+        bool draw = false;
+
+        for (int i = 1; i < tableauScore.Length; i++)
+        {
+            if(tableauScore[i] > meilleurScore)
+            {
+                meilleurScore = tableauScore[i];
+                idMeilleurScore = i;
+            } else if( tableauScore[i] == meilleurScore)
+            {
+                draw = true;
+            }
+        }
+        if (!draw)
+        {
+            Winner.GetComponent<Text>().text = "Le joueur " + (idMeilleurScore + 1) + " a gagné";
+        } else
+        {
+            Winner.GetComponent<Text>().text = "Egalité";
+        }
     }
 
 }
