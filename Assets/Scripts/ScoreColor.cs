@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ScoreColor : MonoBehaviour
 {
+    public PlayerInputManager playerInput;
     // Liste des couleurs qui seront utilisées
     private static List<Color> availableColors = new List<Color> { Color.red, Color.cyan, Color.green, Color.yellow };
 
@@ -12,10 +14,11 @@ public class ScoreColor : MonoBehaviour
     /// </summary>
     public void CreateScore()
     {
+        playerInput = PlayerInputManager.instance;
         // Donne la couleur
-        GetComponent<Text>().color = availableColors[pointeurController.lastColorIndex];
+        GetComponent<Text>().color = availableColors[playerInput.playerCount - 1];
         // Initialise à zéro le score
-        GetComponent<Text>().text = (pointeurController.lastColorIndex + 1) + " : 0";
+        GetComponent<Text>().text = (playerInput.playerCount) + " : 0";
         
     }
 }

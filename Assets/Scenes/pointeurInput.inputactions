@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "5d388245-20f2-480d-90c8-238256caf8e9",
                     "expectedControlType": "Stick",
-                    "processors": "StickDeadzone(min=0.6,max=1.6)",
+                    "processors": "StickDeadzone(min=0.5,max=1.6)",
                     "interactions": ""
                 },
                 {
@@ -54,6 +54,17 @@
                     "name": "",
                     "id": "ce2e3a05-8b23-4eca-929d-08d4a1185d1a",
                     "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d010681-13ec-465a-818c-c143ef18b47e",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

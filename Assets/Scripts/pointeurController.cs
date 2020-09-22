@@ -2,6 +2,9 @@
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Net.Http.Headers;
+using System.Collections;
+using System.Diagnostics;
 
 public class pointeurController : MonoBehaviour
 {
@@ -9,6 +12,8 @@ public class pointeurController : MonoBehaviour
     public float radius = 0.25f;
     // Vitesse de déplacement du curseur
     public float moveSpeed = 30f;
+
+    public PlayerInputManager playerInput;
 
     //Index du dernier joueur à avoir rejoint
     public static int lastColorIndex = 0;
@@ -35,12 +40,15 @@ public class pointeurController : MonoBehaviour
 
     void Start()
     {
+        playerInput = PlayerInputManager.instance;
+
         // Ajout d'un id au joueur
-        playerId = lastColorIndex;
+        print(playerInput.playerCount);
+        playerId = playerInput.playerCount;
         print("player" + playerId + " has joined!");
 
         // Nom de l'emplacement de score dans l'interface
-        playerScoreName = "scorePlayer" + playerId.ToString();
+        playerScoreName = "scorePlayer" + (playerId - 1).ToString();
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
@@ -56,12 +64,10 @@ public class pointeurController : MonoBehaviour
 
         playerColl = this.GetComponentInChildren<PlayerCollider>();
 
-        gameManager.timerIsRunning = true;
-
-        if(lastColorIndex == 0)
+        if((playerInput.playerCount - 1) == 0)
         {
+            gameManager.timerIsRunning = true;
             //boucle des movement des professeurs
-
             //StartCoroutine(movingTeachers());
             gameManager.InvokeRepeating("Coroutine", 1f, 30f);
             // Lancement de l'apparition des cibles dès le début, et se répète chaque seconde
@@ -91,18 +97,31 @@ public class pointeurController : MonoBehaviour
     /// <summary>
     /// Tire et détruit une cible.
     /// </summary>
-    public void OnFire()
+    public IEnumerator OnFire()
     {
         // Trouve la cible la plus proche
         var go = playerColl.GetTarget(radius);
-
+        
         // Si une cible a été trouvé, elle est détruite et le score du joueur augmente.
         if (go != null)
         {
-            IncrementScore(go.GetComponent<Target>());
-            Destroy(go);
-        }
+            if (!go.GetComponent<Target>().isTargetHit)
+            {
+                IncrementScore(go.GetComponent<Target>());
+                if (doorTeacher.IsTeacherIN() || windowTeacher.IsTeacherIN() || professor.IsTeacherIN())
+                {
+                    go.GetComponent<Renderer>().material.color = Color.red;
+                }
+                else
+                {
+                    go.GetComponent<Renderer>().material.color = Color.green;
+                }
 
+                go.GetComponent<Target>().isTargetHit = true;
+                yield return new WaitForSeconds(.15f);
+                Destroy(go);
+            }   
+        }
     }
 
     /// <summary>
@@ -112,17 +131,23 @@ public class pointeurController : MonoBehaviour
     {
         if(gameManager.win)
         {
-            gameManager.timerIsRunning = false;
-            lastColorIndex = 0;
+           // Process.Start(Application.dataPath + "/../Cancre_Simulator.exe");
+            //Application.Quit();
+        
+      
+           gameManager.timerIsRunning = false;
+           lastColorIndex = 0;
+      
+           // Détruit tous les joueurs avant de recommencer la partie
+           GameObject[] pointers = GameObject.FindGameObjectsWithTag("pointer");
+           foreach (var pointer in pointers)
+           {
+               Destroy(pointer);
+           }
 
-            // Détruit tous les joueurs avant de recommencer la partie
-            GameObject[] pointers = GameObject.FindGameObjectsWithTag("pointer");
-            foreach (var pointer in pointers)
-            {
-                Destroy(pointer);
-            }
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
-        }
+
+       }
 
     }
 
@@ -156,8 +181,8 @@ public class pointeurController : MonoBehaviour
 
         print(playerScore);
 
-        gameManager.tableauScore[playerId] = playerScore;
+        gameManager.tableauScore[playerId - 1] = playerScore;
 
-        displayedScore.text = (playerId + 1) + " : " + playerScore.ToString();
+        displayedScore.text = (playerId) + " : " + playerScore.ToString();
     }
 }
