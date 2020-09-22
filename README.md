@@ -10,8 +10,8 @@ Téléchargez "cancre_simulator_windows.zip" dans la section [Releases](https://
 
 ## Membres
 
-'''
+```
 Louis Bovay
 Mathieu Goudron
 Thomas Amstutz
-'''
+```
