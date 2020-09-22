@@ -21,6 +21,7 @@ public class Target : MonoBehaviour
     const int GOLDEN_TARGET = 10;
     int goldenTargetRoll;
     public bool isGoldenTarget = false;
+    public bool isTargetHit = false;
     //Taille de la cible
     public float targetSize;
     // Vitesse de déplacement des cibles

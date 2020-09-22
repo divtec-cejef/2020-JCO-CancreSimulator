@@ -2,6 +2,9 @@
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Net.Http.Headers;
+using System.Collections;
+using System.Diagnostics;
 
 public class pointeurController : MonoBehaviour
 {
@@ -56,12 +59,10 @@ public class pointeurController : MonoBehaviour
 
         playerColl = this.GetComponentInChildren<PlayerCollider>();
 
-        gameManager.timerIsRunning = true;
-
         if(lastColorIndex == 0)
         {
+            gameManager.timerIsRunning = true;
             //boucle des movement des professeurs
-
             //StartCoroutine(movingTeachers());
             gameManager.InvokeRepeating("Coroutine", 1f, 30f);
             // Lancement de l'apparition des cibles dès le début, et se répète chaque seconde
@@ -91,18 +92,31 @@ public class pointeurController : MonoBehaviour
     /// <summary>
     /// Tire et détruit une cible.
     /// </summary>
-    public void OnFire()
+    public IEnumerator OnFire()
     {
         // Trouve la cible la plus proche
         var go = playerColl.GetTarget(radius);
-
+        
         // Si une cible a été trouvé, elle est détruite et le score du joueur augmente.
         if (go != null)
         {
-            IncrementScore(go.GetComponent<Target>());
-            Destroy(go);
-        }
+            if (!go.GetComponent<Target>().isTargetHit)
+            {
+                IncrementScore(go.GetComponent<Target>());
+                if (doorTeacher.IsTeacherIN() || windowTeacher.IsTeacherIN() || professor.IsTeacherIN())
+                {
+                    go.GetComponent<Renderer>().material.color = Color.red;
+                }
+                else
+                {
+                    go.GetComponent<Renderer>().material.color = Color.green;
+                }
 
+                go.GetComponent<Target>().isTargetHit = true;
+                yield return new WaitForSeconds(.15f);
+                Destroy(go);
+            }   
+        }
     }
 
     /// <summary>
@@ -112,17 +126,21 @@ public class pointeurController : MonoBehaviour
     {
         if(gameManager.win)
         {
-            gameManager.timerIsRunning = false;
-            lastColorIndex = 0;
-
-            // Détruit tous les joueurs avant de recommencer la partie
-            GameObject[] pointers = GameObject.FindGameObjectsWithTag("pointer");
-            foreach (var pointer in pointers)
-            {
-                Destroy(pointer);
-            }
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+            Process.Start(Application.dataPath + "/../Cancre_Simulator.exe");
+            Application.Quit();
         }
+      // {
+      //      gameManager.timerIsRunning = false;
+      //      lastColorIndex = 0;
+      //
+      //      // Détruit tous les joueurs avant de recommencer la partie
+      //      GameObject[] pointers = GameObject.FindGameObjectsWithTag("pointer");
+      //      foreach (var pointer in pointers)
+      //      {
+      //          Destroy(pointer);
+      //      }
+      //      SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+      //  }
 
     }
 

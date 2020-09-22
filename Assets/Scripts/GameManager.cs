@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,8 +43,12 @@ public class GameManager : MonoBehaviour
     // S'éxucute au lancement du script
     void Start()
     {
+        
         VictoryIMG.SetActive(false);
         Rejouer.SetActive(false);
+        win = false;
+
+        Wait(5);
 
         doorTeacher = GameObject.Find("teacher3").GetComponent<DoorTeacher>();
         windowTeacher = GameObject.Find("teacher2").GetComponent<WindowTeacher>();
@@ -361,6 +366,7 @@ public class GameManager : MonoBehaviour
             {
                 meilleurScore = tableauScore[i];
                 idMeilleurScore = i;
+                draw = false;
             } else if( tableauScore[i] == meilleurScore)
             {
                 draw = true;
@@ -375,4 +381,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public IEnumerator Wait(int delay)
+    {
+        yield return new WaitForSeconds(delay);
+    }
 }

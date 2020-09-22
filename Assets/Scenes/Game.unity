@@ -762,8 +762,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.7001703}
-  m_AnchoredPosition: {x: 0, y: 258}
-  m_SizeDelta: {x: 466.33295, y: 130.3179}
+  m_AnchoredPosition: {x: 0, y: 261}
+  m_SizeDelta: {x: 736.8919, y: 130.3179}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &836598656
 MonoBehaviour:
@@ -1012,7 +1012,7 @@ MonoBehaviour:
   Winner: {fileID: 836598654}
   win: 0
   timeText: {fileID: 504587748}
-  timeRemaining: 10
+  timeRemaining: 25
   timerIsRunning: 0
   tableauScore: 00000000000000000000000000000000
 --- !u!4 &1270019351
