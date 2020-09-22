@@ -6,7 +6,7 @@ Cancre Simulator est un jeu crée à l'occasion des portes ouvertes de la sectio
 
 ## Installation
 
-Téléchargez "cancre_simulator_windows.zip" dans la sction Releases. Vous pouvez aussi cloner le repository et build depuis Unity.
+Téléchargez "cancre_simulator_windows.zip" dans la sction [Releases](https://github.com/TheThomaas/cancre_simulator/releases). Vous pouvez aussi cloner le repository et build depuis Unity.
 
 
  
