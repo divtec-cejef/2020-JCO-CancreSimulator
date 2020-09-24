@@ -41,7 +41,6 @@ public class Target : MonoBehaviour
         speed = Random.Range(0f, 1.5f);
         //Choisi si le mouvement sera vertical ou horizontal
         verticalORhorizontal = Random.Range(0, 2);
-        print("vertical OR horizontal : " + verticalORhorizontal);
 
         // Tirage de la cible d'or
         goldenTargetRoll = Random.Range(0, 50);

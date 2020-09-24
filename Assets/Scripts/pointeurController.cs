@@ -2,22 +2,22 @@
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Net.Http.Headers;
 using System.Collections;
-using System.Diagnostics;
+using System;
 
 public class pointeurController : MonoBehaviour
 {
+    private float[] listePreset = new float[] {14, 20, 26, 32, 38 };
+    private int selectedPreset = 2;
+
     // Radius de recherche
     public float radius = 0.25f;
     // Vitesse de déplacement du curseur
-    public float moveSpeed = 30f;
+    private float moveSpeed;
 
     public PlayerInputManager playerInput;
 
-    //Index du dernier joueur à avoir rejoint
-    public static int lastColorIndex = 0;
-    // Score du joueur
+    // Score du joueur;
     private int playerScore = 0;
     // Identifiant du joueur
     private int playerId;
@@ -40,8 +40,9 @@ public class pointeurController : MonoBehaviour
 
     void Start()
     {
+        // Récipération de l'instance du PlayerInputManager
         playerInput = PlayerInputManager.instance;
-
+        moveSpeed = listePreset[selectedPreset];
         // Ajout d'un id au joueur
         print(playerInput.playerCount);
         playerId = playerInput.playerCount;
@@ -77,21 +78,37 @@ public class pointeurController : MonoBehaviour
 
     void Update()
     {
-        Move();
+        if (transform.position.x > 5.5f)
+        {
+            transform.position = new Vector2(5.5f, transform.position.y);
+        } else if (transform.position.x < -5f)
+        {
+            transform.position = new Vector2(-5f, transform.position.y);
+        } else if(transform.position.y > 4.5f)
+        {
+            transform.position = new Vector2(transform.position.x, 4.5f);
+        } else if(transform.position.y < -3.1f)
+        {
+            transform.position = new Vector2(transform.position.x, -3.1f);
+        } else
+        {
+            Move();
+        }
     }
 
     void Move()
     {
-        Vector2 movement = new Vector2(i_movement.x, i_movement.y) * moveSpeed * Time.deltaTime;
+        Vector2 movement = new Vector2(i_movement.x, i_movement.y) * moveSpeed * Time.deltaTime;      
         transform.Translate(movement);
     }
+
     /// <summary>
     /// Déplace le joueur
     /// </summary>
     /// <param name="value">Valeur du joystick</param>
     void OnMove(InputValue value)
     {
-        i_movement = value.Get<Vector2>();
+        i_movement = value.Get<Vector2>();  
     }
 
     /// <summary>
@@ -110,11 +127,11 @@ public class pointeurController : MonoBehaviour
                 IncrementScore(go.GetComponent<Target>());
                 if (doorTeacher.IsTeacherIN() || windowTeacher.IsTeacherIN() || professor.IsTeacherIN())
                 {
-                    go.GetComponent<Renderer>().material.color = Color.red;
+                    go.GetComponent<Renderer>().material.color = UnityEngine.Color.red;
                 }
                 else
                 {
-                    go.GetComponent<Renderer>().material.color = Color.green;
+                    go.GetComponent<Renderer>().material.color = UnityEngine.Color.green;
                 }
 
                 go.GetComponent<Target>().isTargetHit = true;
@@ -134,9 +151,7 @@ public class pointeurController : MonoBehaviour
            // Process.Start(Application.dataPath + "/../Cancre_Simulator.exe");
             //Application.Quit();
         
-      
            gameManager.timerIsRunning = false;
-           lastColorIndex = 0;
       
            // Détruit tous les joueurs avant de recommencer la partie
            GameObject[] pointers = GameObject.FindGameObjectsWithTag("pointer");
@@ -151,6 +166,70 @@ public class pointeurController : MonoBehaviour
 
     }
 
+    public void OnNextPreset()
+    {
+        if(selectedPreset < listePreset.Length)
+        {
+            selectedPreset++;
+            moveSpeed = listePreset[selectedPreset];
+        }
+    }
+    
+    public void OnPreviousPreset()
+    {
+        if(selectedPreset > 0 )
+        {
+            selectedPreset--;
+            moveSpeed = listePreset[selectedPreset];
+        }
+    }
+
+    /// <summary>
+    /// Augmente la vitesse de déplacement du pointeur
+    /// </summary>
+    public void OnIncreaseSpeed()
+    {
+        moveSpeed += 1f;
+        CheckSpeed();
+    }
+
+    /// <summary>
+    /// Diminue la vitesse de déplacement du pointeur
+    /// </summary>
+    public void OnDecreaseSpeed()
+    {
+        if (moveSpeed <= 2)
+        {
+            moveSpeed = 1;
+        } else
+        {
+            moveSpeed -= 2f;
+        }
+        CheckSpeed();
+    }
+
+    public void CheckSpeed()
+    {
+        switch (moveSpeed)
+        {
+            case 14:
+                selectedPreset = 0;
+                break;
+            case 20:
+                selectedPreset = 1;
+                break;
+            case 26:
+                selectedPreset = 2;
+                break;
+            case 32:
+                selectedPreset = 3;
+                break;
+            case 38:
+                selectedPreset = 4;
+                break;
+        }
+    }
+
     /// <summary>
     /// Replace le joueur au centre de l'écran.
     /// </summary>
@@ -162,7 +241,7 @@ public class pointeurController : MonoBehaviour
     /// <summary>
     /// Augmente ou baisse le score du joueur selon la taille des cibles et l'emplacement des professeurs.
     /// </summary>
-    /// <param name="cible"></param>
+    /// <param name="cible">Cible à détruire</param>
     public void IncrementScore(Target cible)
     {
        int  multiplicateurScore = 1;

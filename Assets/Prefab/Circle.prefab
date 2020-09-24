@@ -129,7 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.3
-  moveSpeed: 30
+  moveSpeed: 26
+  playerInput: {fileID: 0}
 --- !u!114 &3355990933646217791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde44901ac237b4469beaac706228f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
 --- !u!1 &6123568932219368876
 GameObject:
   m_ObjectHideFlags: 0

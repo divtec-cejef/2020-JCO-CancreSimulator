@@ -41,7 +41,6 @@ public class WindowTeacher : MonoBehaviour
     public void MoveIN()
     {
         targetProgress = transform.position + new Vector3(3.4f, 0, 0);
-        print(targetProgress);
     }
 
     /**
@@ -50,7 +49,6 @@ public class WindowTeacher : MonoBehaviour
     public void MoveOUT()
     {
         targetProgress = transform.position - new Vector3(3.4f, 0, 0);
-        print(targetProgress);
     }
 
     /**

@@ -113,9 +113,11 @@ public class GameManager : MonoBehaviour
         Destroy(doorTeacher);
         Destroy(windowTeacher);
         Destroy(professor);
+        Destroy(exclamation);
+        Destroy(exclamationRed);
         backTeacher.SetActive(false);
-        exclamation.SetActive(false);
-        exclamationRed.SetActive(false);
+        //exclamation.SetActive(false);
+        //exclamationRed.SetActive(false);
        
         Rejouer.SetActive(true);
     }
@@ -125,14 +127,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void Coroutine()
     {
-        //boucle des movement des professeurs
+        // Boucle des movement des professeurs
         StartCoroutine(MovingTeachers());
     }
     IEnumerator MovingTeachers()
     {
 
         int rndNum = UnityEngine.Random.Range(1, 6);
-        print(rndNum);
 
         switch (rndNum)
         {
@@ -208,10 +209,10 @@ public class GameManager : MonoBehaviour
                 doorTeacher.MoveOUT();
                 yield return new WaitForSeconds(2.5f);
                 //55
-                professor.MoveIN();
+                windowTeacher.MoveIN();
                 yield return new WaitForSeconds(2.5f);
                 //60
-                professor.MoveOUT();
+                windowTeacher.MoveOUT();
                 break;
 
             case 3:

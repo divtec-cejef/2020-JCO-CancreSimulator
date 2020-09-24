@@ -45,7 +45,6 @@ public class DoorTeacher : MonoBehaviour
     public void MoveIN()
     {
         targetProgress = transform.position - new Vector3(3.5f, 0, 0);
-        print(targetProgress);
     }
 
     /**
@@ -54,7 +53,6 @@ public class DoorTeacher : MonoBehaviour
     public void MoveOUT()
     {
         targetProgress = transform.position + new Vector3(3.5f, 0, 0);
-        print(targetProgress);
     }
 
     /**
