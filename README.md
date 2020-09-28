@@ -15,3 +15,5 @@ Louis Bovay
 Mathieu Goudron
 Thomas Amstutz
 ```
+
+![image](Assets/Sprites/cancre_simulator.jpeg)
