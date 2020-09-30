@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/**
+* Gestion de la couleur généralisée
+*/
 public class ChangeColor : MonoBehaviour
 {
     public PlayerInputManager playerInput;
@@ -20,17 +23,30 @@ public class ChangeColor : MonoBehaviour
       
     }
     
+    /// <summary>
+    /// Convertir un hexadécimal en décimal
+    /// </summary>
+    /// <param name="hex">Hexadécimal</param>
     private static int HexToDec(string hex)
     {
         int dec = System.Convert.ToInt32(hex, 16);
         return dec;
     }
 
+
+    /// <summary>
+    /// Convertir un hexadécimal en float
+    /// </summary>
+    /// <param name="hex">Hexadécimal</param>
     private static float HexToFloatNormalized(string hex)
     {
         return HexToDec(hex) / 255f;
     }
 
+    /// <summary>
+    /// Convertir une couleur hexadécimale en couleur Unity
+    /// </summary>
+    /// <param name="hexString">Couleur héxadécimale</param>
     private static Color GetColorFromString(string hexString)
     {
         float red = HexToFloatNormalized(hexString.Substring(0, 2));
