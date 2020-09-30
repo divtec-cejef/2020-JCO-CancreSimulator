@@ -5,6 +5,9 @@ using System.Transactions;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+* Gestion du professeur de la porte
+*/
 public class DoorTeacher : MonoBehaviour
 {
 
