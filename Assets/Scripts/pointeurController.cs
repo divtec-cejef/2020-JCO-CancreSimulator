@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
 
+/**
+* Gestion du viseur
+*/
 public class pointeurController : MonoBehaviour
 {
     private float[] listePreset = new float[] {14, 20, 26, 32, 38 };
@@ -58,18 +61,19 @@ public class pointeurController : MonoBehaviour
         sc = displayedScore.GetComponentInChildren<ScoreColor>();
         // Initialise le score du joueur
         sc.CreateScore();
-
+        
+        //Récuperation des profs
         doorTeacher = GameObject.Find("teacher3").GetComponent<DoorTeacher>();
         windowTeacher = GameObject.Find("teacher2").GetComponent<WindowTeacher>();
         professor = GameObject.Find("Professor").GetComponent<Professor>();
 
         playerColl = this.GetComponentInChildren<PlayerCollider>();
 
+        //Lancer la partie dès que le premier joueur est créé
         if((playerInput.playerCount - 1) == 0)
         {
             gameManager.timerIsRunning = true;
             //boucle des movement des professeurs
-            //StartCoroutine(movingTeachers());
             gameManager.InvokeRepeating("Coroutine", 1f, 30f);
             // Lancement de l'apparition des cibles dès le début, et se répète chaque seconde
             gameManager.InvokeRepeating("Spawn", 1f, 1f);
@@ -78,24 +82,31 @@ public class pointeurController : MonoBehaviour
 
     void Update()
     {
+        //Empecher le viseur de sortir du tableau        
         if (transform.position.x > 5.5f)
+        //en haut
         {
             transform.position = new Vector2(5.5f, transform.position.y);
         } else if (transform.position.x < -5f)
+        //en bas
         {
             transform.position = new Vector2(-5f, transform.position.y);
         } else if(transform.position.y > 4.5f)
+        //à droite
         {
             transform.position = new Vector2(transform.position.x, 4.5f);
         } else if(transform.position.y < -3.1f)
+        //à gauche
         {
             transform.position = new Vector2(transform.position.x, -3.1f);
         } else
         {
+        //dans la zone du tableau
             Move();
         }
     }
 
+    //Fait bouger le viseur
     void Move()
     {
         Vector2 movement = new Vector2(i_movement.x, i_movement.y) * moveSpeed * Time.deltaTime;      
@@ -166,6 +177,9 @@ public class pointeurController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Passe à la sensibilité suivante
+    /// </summary>
     public void OnNextPreset()
     {
         if(selectedPreset < listePreset.Length)
@@ -175,6 +189,9 @@ public class pointeurController : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Passe à la sensibilité précédente
+    /// </summary>
     public void OnPreviousPreset()
     {
         if(selectedPreset > 0 )
@@ -208,6 +225,9 @@ public class pointeurController : MonoBehaviour
         CheckSpeed();
     }
 
+    /// <summary>
+    /// Regarde si la sensibilité du viseur correspond à un preset de sensibilité
+    /// </summary>
     public void CheckSpeed()
     {
         switch (moveSpeed)
