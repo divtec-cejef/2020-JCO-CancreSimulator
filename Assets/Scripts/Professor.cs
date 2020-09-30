@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Gestion du prof principal
+*/
 public class Professor : MonoBehaviour
 {
     //sprite
@@ -17,12 +20,6 @@ public class Professor : MonoBehaviour
     void Start()
     {
         MoveOUT();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     /**
@@ -48,7 +45,7 @@ public class Professor : MonoBehaviour
     }
 
     /**
-     * Le prof s'énèrve un point d'exclamation appraît au dessus de sa tête
+     * Le prof s'énèrve et un point d'exclamation appraît au dessus de sa tête
      */
     public void MoveIN()
     {
@@ -59,29 +56,34 @@ public class Professor : MonoBehaviour
         Invoke("ActiveExcla", 0.50f);
         Invoke("DesacExcla", 0.75f);
         Invoke("ActiveExclaRed", 0.75f);
-
+        //Le prof se tourne face au joueur
         Invoke("DesacExclaRed", 1f);
         Invoke("GettingAngry", 1f);
 
     }
 
+    //Renvoie si oui ou non le prof est dans la salle
     public bool IsTeacherIN()
     {
         return isReturned;
     }
-
+    
+    //Rend visible le point d'exclamation
     public void ActiveExcla()
     {
         exclamation.SetActive(true);
     }
+    //Rend invisible le point d'exclamation
     public void DesacExcla()
     {
         exclamation.SetActive(false);
     }
+    //Rend visible le point d'exclamation rouge
     public void ActiveExclaRed()
     {
         exclamationRed.SetActive(true);
     }
+    //Rend invisible le point d'exclamation rouge
     public void DesacExclaRed()
     {
         exclamationRed.SetActive(false);
