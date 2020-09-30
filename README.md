@@ -16,9 +16,11 @@ Cancre Simulator est un jeu crée à l'occasion des portes ouvertes de la sectio
 * Définissez Visual Studio 2019 comme éditeur (Edit > Preferences > External Tools > Editor Attaching > Visual Studio 2019 (Community))
 * Vous pouvez modifier le projet et build de puis l'onglet "fichiers"
 
+Trouvez plus d'informations dans la [documentation](https://github.com/ThomasAmstutz/cancre_simulator/releases)
+
 ## Jouer au jeu
 
-Téléchargez "cancre_simulator_windows.zip" dans la section [Releases](https://github.com/ThomasAmstutz/cancre_simulator/releases).
+Téléchargez "cancre_simulator_windows.zip" dans la section [Releases](https://github.com/divtec-cejef/2020-JCO-CancreSimulator/blob/master/Docs/pdf/PO%202020%20CANCRE_SIMULATOR%20Rapport%20de%20travail.pdf).
 
 ## Membres
 
