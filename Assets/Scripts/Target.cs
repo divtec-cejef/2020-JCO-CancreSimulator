@@ -52,7 +52,8 @@ public class Target : MonoBehaviour
 
         // Définition de la taille de la cible
         transform.localScale = RndScale();
-
+        
+        //Définit si la cible aura un mouvement vertical ou horizontal
         if (verticalORhorizontal == 1)
         {
             //horizontal
@@ -84,6 +85,7 @@ public class Target : MonoBehaviour
             }
 
         }
+        //La cible est automatiquement détruite au bout de 6 secondes
         Destroy(gameObject, 6f);
     }
     
@@ -142,7 +144,7 @@ public class Target : MonoBehaviour
 
     /// <summary>
     /// Fait changer de drection le mouvement de la cible.
-    /// Si elle atteint sa position min/max, et se dirigera vers sa position max/min.
+    /// Si elle atteint sa position min/max, elle se dirigera vers sa position max/min.
     /// </summary>
     public void SwitchTempPosition()
     {
