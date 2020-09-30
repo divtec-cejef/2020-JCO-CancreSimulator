@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+*Gestion du professeur de la fenêtre
+*/
 public class WindowTeacher : MonoBehaviour
 {
     // Position d'arrivée
@@ -14,13 +17,12 @@ public class WindowTeacher : MonoBehaviour
     //Vitesse de déplacement
     [SerializeField] private float speed = 5;
 
-    // Start is called before the first frame update
+    // Fait d'office sortir le prof pour assurer qu'il est en bonne position
     void Start()
     {
         MoveOUT();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //Fait entrer le prof
