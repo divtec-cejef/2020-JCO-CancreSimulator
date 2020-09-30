@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+/**
+*Gestion des couleurs du score de chaque joueur
+*/
 public class ScoreColor : MonoBehaviour
 {
     public PlayerInputManager playerInput;
