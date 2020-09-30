@@ -6,6 +6,15 @@ Cancre Simulator est un jeu crée à l'occasion des portes ouvertes de la sectio
 
 ## Installation
 
+* Téléchargez [Unity](https://unity.com/fr)
+* Créez-vous un compte
+* Connectez-vous
+* Installez Visual Studio 2019 en parallèle
+* Clonez ce repository
+* Ouvrez le depuis Unity Hub
+* Installez le package "Input System"
+* Définissez Visual Studio 2019 comme éditeur (Edit > Preferences > External Tools > Editor Attaching > Visual Studio 2019 (Community))
+
 Téléchargez "cancre_simulator_windows.zip" dans la section [Releases](https://github.com/ThomasAmstutz/cancre_simulator/releases). Vous pouvez aussi cloner le repository et build depuis Unity.
 
 ## Membres
