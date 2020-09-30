@@ -59,13 +59,17 @@ public class GameManager : MonoBehaviour
     // S'éxécute toutes les frames
     void Update()
     {
+    //Surveillance du timer
         if (timerIsRunning)
+        //timer actif
         {
             if (timeRemaining > 0)
+            //Temps restant supérieur à 0
             {
                 timeRemaining -= Time.deltaTime;        
             }
             else
+            //Fin du timer
             {
                 Debug.Log("Time has run out!");
                 timeRemaining = 0;
@@ -119,6 +123,7 @@ public class GameManager : MonoBehaviour
         //exclamation.SetActive(false);
         //exclamationRed.SetActive(false);
        
+       //Le text "Rejouer" appraît
         Rejouer.SetActive(true);
     }
 
@@ -130,11 +135,12 @@ public class GameManager : MonoBehaviour
         // Boucle des movement des professeurs
         StartCoroutine(MovingTeachers());
     }
+    
+    //Pattern des profs
     IEnumerator MovingTeachers()
     {
-
         int rndNum = UnityEngine.Random.Range(1, 6);
-
+        
         switch (rndNum)
         {
             case 1:
@@ -341,7 +347,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Affiche la timer dans le jeu
+    /// Affiche le timer dans le jeu
     /// </summary>
     /// <param name="timeToDisplay">Temps de jeu</param>
     void DisplayTime(float timeToDisplay)
@@ -382,6 +388,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Faire une pose avant l'exécution des lignes de code suivantes
+    /// </summary>
+    /// <param name="delay">Temps de délai</param>
     public IEnumerator Wait(int delay)
     {
         yield return new WaitForSeconds(delay);
