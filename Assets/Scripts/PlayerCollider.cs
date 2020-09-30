@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/**
+* Permet de rechercher la cible la plus proche d'un viseur
+*/
 public class PlayerCollider : MonoBehaviour
 {
     /// <summary>
