@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Cancre Simulator est un jeu crée à l'occasion des portes ouvertes de la section informatique de la DIVTEC en 2020. Il se joue de une à quatre personnes. Le but est de marquer le plus de point dans le temps imparti, si un professeur vous voit tirer sur une cible, vous perdez des points sinon vous en gagnez.
+Cancre Simulator est un jeu crée à l'occasion des portes ouvertes de la section informatique de la DIVTEC en 2020. Il se joue de une à quatre personnes. Le but est de marquer le plus de point dans le temps imparti, si un professeur vous voit tirer sur une cible, vous perdrez des points..
 
 ## Prérequis
 Il est primordial de connaître les bases de programmation du language C# ainsi que de l'utilisation de Unity.
@@ -10,6 +10,9 @@ Il est primordial de connaître les bases de programmation du language C# ainsi 
 [Documentation C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
 
 [Documentation Unity](https://docs.unity3d.com/Manual/index.html)
+
+## Éléments graphiques du jeu
+![image](Docs/src/Présentation_props.png)
 
 ## Installation
 
