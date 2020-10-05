@@ -29,7 +29,7 @@ Il est primordial de connaître les bases de programmation du language C# ainsi 
 * Téléchargez [Unity](https://unity.com/fr)
 * Créez-vous un compte
 * Connectez-vous
-* Installez Visual Studio 2019 en parallèle
+* Visual Studio s'installe automatiquement avec Unity
 * Clonez ce repository
 * Ouvrez le depuis Unity Hub
 * Installez le package "Input System"
