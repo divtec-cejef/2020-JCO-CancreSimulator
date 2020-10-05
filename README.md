@@ -34,7 +34,7 @@ Il est primordial de connaître les bases de programmation du language C# ainsi 
 * Ouvrez le depuis Unity Hub
 * Installez le package "Input System"
 * Définissez Visual Studio 2019 comme éditeur (Edit > Preferences > External Tools > Editor Attaching > Visual Studio 2019 (Community))
-* Vous pouvez modifier le projet et build de puis l'onglet "fichiers"
+* Vous pouvez modifier le projet et build depuis l'onglet "fichiers"
 
 Trouvez plus d'informations dans la [documentation](https://github.com/divtec-cejef/2020-JCO-CancreSimulator/blob/master/Docs/pdf/PO%202020%20CANCRE_SIMULATOR%20Rapport%20de%20travail.pdf)
 
