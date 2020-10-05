@@ -1,5 +1,15 @@
 # Cancre Simulator
 
+## Table des matières
+- [Cancre Simulator](#cancre-simulator)
+  - [Table des matières](#table-des-matières)
+  - [Introduction](#introduction)
+  - [Prérequis](#prérequis)
+  - [Éléments graphiques du jeu](#éléments-graphiques-du-jeu)
+  - [Installation](#installation)
+  - [Jouer au jeu](#jouer-au-jeu)
+  - [Membres](#membres)
+
 ## Introduction
 
 Cancre Simulator est un jeu crée à l'occasion des portes ouvertes de la section informatique de la DIVTEC en 2020. Il se joue de une à quatre personnes. Le but est de marquer le plus de point dans le temps imparti, si un professeur vous voit tirer sur une cible, vous perdrez des points..
