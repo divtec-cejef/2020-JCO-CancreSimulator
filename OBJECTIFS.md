@@ -1,5 +1,5 @@
 # Objectif : 
-* RAjouter un 5ème joueur 
+* Rajouter un 5ème joueur 
   * Lui donner une couleur
   * Lui donner un score
 
